@@ -1,0 +1,83 @@
+﻿<views:MvxStorePage
+    x:Name="pageRoot"
+    x:Class="MvxDemo.Store.Views.QuestionView"
+    DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MvxDemo.Store.Views"
+    xmlns:common="using:MvxDemo.Store.Common"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:views="using:Cirrious.MvvmCross.WindowsStore.Views"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <!-- TODO: Delete this line if the key AppName is declared in App.xaml -->
+        <x:String x:Key="AppName">Questions</x:String>
+        <DataTemplate x:Key="AnswerTemplate">
+            <RadioButton GroupName="{Binding QuestionId}" IsChecked="{Binding IsSelected, Mode=TwoWay}" Background="Silver">
+                <TextBlock Text="{Binding AnswerText}" FontSize="30" Foreground="Navy"></TextBlock>
+            </RadioButton>
+        </DataTemplate>
+        <DataTemplate x:Key="QuestionTemplate">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition ></RowDefinition>
+                    <!--Height="40"-->
+                    <RowDefinition ></RowDefinition>
+                    <!--Height="*"-->
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="{Binding QuestionOrder}" FontSize="30"></TextBlock>
+                    <TextBlock Grid.Column="1" Text="{Binding QuestionText}" FontSize="30" TextWrapping="Wrap"></TextBlock>
+                </Grid>
+                <ListBox Grid.Row="1" ItemsSource="{Binding PossibleAnswers}" ItemTemplate="{StaticResource AnswerTemplate}" Background="Silver" ></ListBox>
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
+
+    <!--
+        This grid acts as a root panel for the page that defines two rows:
+        * Row 0 contains the back button and page title
+        * Row 1 contains the rest of the page layout
+    -->
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="140"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Back button and page title -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="backButton" Margin="39,59,39,0" Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
+                        Style="{StaticResource NavigationBackButtonNormalStyle}"
+                        VerticalAlignment="Top"
+                        AutomationProperties.Name="Back"
+                        AutomationProperties.AutomationId="BackButton"
+                        AutomationProperties.ItemType="Navigation Button"/>
+            <TextBlock x:Name="pageTitle" Text="{StaticResource AppName}" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
+                        IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
+        </Grid>
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel>
+                    <ListBox ItemsSource="{Binding Questions}" ItemTemplate="{StaticResource QuestionTemplate}" Background="Silver"></ListBox>
+                    <Button Content="Save Answers" Command="{Binding SaveAnswersCommand}" FontSize="30" />
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</views:MvxStorePage>

@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>cmdmvx</Title>
+			<Shortcut>cmdmvx</Shortcut>
+			<Description>Code snippet for an MvvmCross iCommand property/action</Description>
+			<Author>Jeremy Ellis</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+        <Literal>
+          <ID>field</ID>
+          <ToolTip>The private field backing this property</ToolTip>
+          <Default>_myActionCommand</Default>
+        </Literal>
+        <Literal>
+          <ID>property</ID>
+          <ToolTip>Property name</ToolTip>
+          <Default>MyActionCommand</Default>
+        </Literal>                
+        <Literal>          
+          <ID>action</ID>
+          <ToolTip>Action method</ToolTip>
+          <Default>DoMyAction</Default>
+        </Literal>
+			</Declarations>
+			<Code Language="csharp">
+        <![CDATA[private MvxCommand $field$;
+	public System.Windows.Input.ICommand $property$ {
+		get { $field$ = $field$ ?? new MvxCommand($action$); return $field$; }
+	}
+
+	private void $action$() {
+		// TODO: add action code here - or -
+		// throw new System.NotImplementedException();
+	}    
+	$end$]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>

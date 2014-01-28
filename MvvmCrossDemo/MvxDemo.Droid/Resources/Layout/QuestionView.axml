@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <Mvx.MvxListView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".90"
+        local:MvxBind="ItemsSource Questions"
+        local:MvxItemTemplate="@layout/item_question" />
+    <Button
+        android:text="Save Answers"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".10"
+        android:minHeight="60dp"
+        android:id="@+id/button1"
+        local:MvxBind="Click SaveAnswersCommand" />
+</LinearLayout>
