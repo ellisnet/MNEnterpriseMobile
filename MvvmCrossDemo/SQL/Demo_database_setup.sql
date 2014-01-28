@@ -276,6 +276,20 @@ select
 as 'Database Connection String'
 go
 
+select 
+	ua.UserID,
+	u.FirstName,
+	u.LastName,
+	q.QuestionOrder,
+	a.AnswerText, 
+	ua.*
+from MvxDemo.UserAnswers ua
+	inner join MvxDemo.Users u on u.ID = ua.UserID
+	inner join MvxDemo.Questions q on q.ID = ua.QuestionID
+	inner join MvxDemo.Answers a on a.ID = ua.AnswerID
+order by ua.Timestamp
+go
+
 /*
 --remove all of the objects we created from the database
 drop procedure [MvxDemo].[SaveUserAnswer];
