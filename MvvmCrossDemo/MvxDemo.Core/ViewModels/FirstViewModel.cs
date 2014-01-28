@@ -9,7 +9,7 @@ using MvxDemo.Models;
 namespace MvxDemo.Core.ViewModels {
     public class FirstViewModel
         : MvxViewModel {
-        private string apiBaseUrl = "http://192.168.10.104/MvxDemo/";
+        private string apiBaseUrl = "http://192.168.1.109/MvxDemo/";
 
         private string _emailAddress = "";
         public string EmailAddress {
