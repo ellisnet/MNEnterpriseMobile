@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+					   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+					   x:Class="NewEmployee.App.Views.LoginPage"
+             Title="{Binding PageTitle}">
+    <StackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Center">
+        <Label Text="Please login using your Employee ID:" Font="Large" />
+        <Entry Placeholder="Employee ID" IsPassword="True" Text="{Binding EmployeeId, Mode=TwoWay}" />
+        <Button Text="Login" Command="{Binding LoginCommand}" CommandParameter="{Binding EmployeeId}" Font="Large" />
+    </StackLayout>
+</ContentPage>
